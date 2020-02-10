@@ -1,27 +1,23 @@
 package atguigu.test;
 
 import com.atguigu.bean.*;
-import com.atguigu.dao.ISonDao;
-import com.atguigu.dao.IUserBookDao;
+import com.atguigu.dao.IOrderDao;
 import com.atguigu.dao.IUserDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.util.StringUtils;
 
 import java.io.InputStream;
-import java.sql.Connection;
 import java.util.List;
 
-public class AnnotationCRUDTest {
+public class UserTest {
     private InputStream in;
     private SqlSessionFactory factory;
     private SqlSession session;
     private IUserDao userDao;
-    private ISonDao sonDao;
-    private IUserBookDao userBookDao;
+    private IOrderDao orderDao;
 
     @Before
     public void init() throws Exception {
@@ -29,8 +25,7 @@ public class AnnotationCRUDTest {
         factory = new SqlSessionFactoryBuilder().build(in);
         session = factory.openSession();
         userDao = session.getMapper(IUserDao.class);
-        sonDao = session.getMapper(ISonDao.class);
-        userBookDao = session.getMapper(IUserBookDao.class);
+        orderDao = session.getMapper(IOrderDao.class);
     }
 
     @After
@@ -46,10 +41,9 @@ public class AnnotationCRUDTest {
     @Test
     public void testSave() {
         User user = new User();
-        user.setUserName("zhangsan2");
+        user.setUserName("zhangsan3");
         user.setAddress("beijing");
         user.setSex("man");
-        user.setBirthday(null);
         userDao.insertUser(user);
     }
 
@@ -58,7 +52,7 @@ public class AnnotationCRUDTest {
      */
     @Test
     public void testDelete() {
-        userDao.deleteUser(1);
+        userDao.deleteUser(3);
         System.err.println("success");
     }
 
@@ -68,18 +62,25 @@ public class AnnotationCRUDTest {
     @Test
     public void testUpdate() {
         User user = new User();
-        user.setId(3);
-        user.setAddress("hunan");
+        user.setId(2);
+        user.setUserName("lisi");
+        user.setAddress("beijing");;
         userDao.updateUser(user);
         System.err.println("success");
     }
 
+    /**
+     * 查
+     */
     @Test
-    public void testSelect() {
-        User user = userDao.selectUser(3);
+    public void testSelectUser() {
+        User user = userDao.selectUser(1);
         System.out.println(user);
     }
 
+    /**
+     * 查
+     */
     @Test
     public void testSelectLike() {
         List<User> userList = userDao.selectUserLike("zhang");
@@ -88,40 +89,46 @@ public class AnnotationCRUDTest {
         }
     }
 
+    /**
+     * 一对多查，需要new新Bean
+     */
     @Test
-    public void testFindSonsByUid() {
-        UserAndSon userAndSon = userDao.findSonsByUid(1);
-        List<Son> sonList = userAndSon.getSonList();
-        for (Son son : sonList) {
-            System.err.println(son);
+    public void testSelectUserWithOrders() {
+        User user = userDao.selectUserWithOrder(1);
+        System.out.println(user.getUserName());
+        for (Order order : user.getOrderList()) {
+            System.out.println(order);
         }
     }
+
+    /**
+     * 一对多插
+     * 插入二级数据，需要先判断上级数据关联外键是否存在
+     */
     @Test
     public void testInsertSons() {
-        Son son = new Son();
-        son.setName("zhangnan");
-        son.setUserId(66);
-        User user = userDao.selectUser(son.getUserId());
-        if (!StringUtils.isEmpty(user)) {
-            System.err.println(sonDao);
-            sonDao.insertSon(son);
-            System.err.println("success");
-        }
+
     }
+
+    /**
+     * 一对多删
+     * 删除上级数据，先判断下级数据是否存在
+     */
     @Test
     public void testDeleteUser() {
-        User user = new User();
-        user.setId(1);
-        Integer userId = user.getId();
-        sonDao.deleteSonsByUserId(userId);
-        userDao.deleteUser(user.getId());
-    }@Test
+    }
+
+    /**
+     * 多对多查
+     * 
+     */
+    @Test
     public void testFindBooks() {
-        UserBook userBook = new UserBook();
-        userBook.setId(1);
-        Integer id = userBook.getId();
-        UserAndBook userAndBook = userBookDao.findBookById(id);
-        System.err.println(userAndBook);
+//        UserBook userBook = new UserBook();
+//        userBook.setId(1);
+//        Integer id = userBook.getId();
+//        UserAndBook userAndBook = userBookDao.findBookById(id);
+//        System.err.println(userAndBook);
     }
 
 }

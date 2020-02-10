@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class UserAndSon extends User {
 
-    private List<Son> sonList;
+    private List<Order> orderList;
 }
