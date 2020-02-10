@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 引入外部资源文件resource:默认引入classpath路径下的资源文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!-- 设置驼峰 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- 配置别名 -->
+    <typeAliases>
+        <!-- typeAlias:用来配置别名，方便映射文件使用，type:类的全限定类名,alias:别名 -->
+        <!-- <typeAlias type="cn.itcast.pojo.User" alias="User"/> -->
+        <!-- 配置包扫描：解决多个pojo别名问题，默认将类名作为别名 -->
+        <package name="com.atguigu.bean"/>
+    </typeAliases>
+
+    <!-- 5.配置环境：可以配置多个环境，default：表示默认使用哪个环境 -->
+    <environments default="test">
+        <!-- 配置环境,id:环境的唯一标识 -->
+        <environment id="test">
+            <!-- 事务管理器，type:使用jdbc的事务管理器 -->
+            <transactionManager type="JDBC"/>
+            <!-- 数据源，type:池类型的数据源 -->
+            <dataSource type="POOLED">
+                <!-- 配置连接信息 -->
+                <property name="driver" value="${driverClassName}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+        <!-- 配置测试环境 -->
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driverClass}" />
+                <property name="url" value="${url}" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--  不需要配置mapper.xml，使用注解 -->
+    <mappers>
+        <package name="com.atguigu.dao"></package>
+    </mappers>
+</configuration>

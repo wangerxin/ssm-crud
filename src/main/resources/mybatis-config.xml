@@ -8,7 +8,8 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 
-	<!--别名（处理bean属性名和table字段名不一致的情况）-->
+	<!--别名-->
+	<!--作用：全名com.atguigu.crud.bean.Employee，别名：Eemployee，其他地方在使用的时候写别名就可以了-->
 	<typeAliases>
 		<package name="com.atguigu.crud.bean"/>
 	</typeAliases>

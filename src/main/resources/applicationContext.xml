@@ -16,7 +16,7 @@
 
 	<!-- Spring的配置文件，主要用于装配bean，这里主要配置和业务逻辑有关的 -->
 
-	<!--dao层：装配数据源（）-->
+	<!--                        dao层：装配数据源（使用c3po连接池）                     -->
 	<context:property-placeholder location="classpath:dbconfig.properties" />
 	<bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/mybatisannotation/mybatisannotation.iml" filepath="$PROJECT_DIR$/mybatisannotation/mybatisannotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/ssm-crud.iml" filepath="$PROJECT_DIR$/ssm-crud.iml" />
     </modules>
   </component>

@@ -32,6 +32,7 @@ public class EmployeeService {
 	public void saveEmp(Employee employee) {
 		// TODO Auto-generated method stub
 		// 有选择性的插入，一般在mysql使用自增id的时候，不需要插入id
+		// todo 为什么不拿到返回值，在controller成根据返回值处理业务逻辑
 		employeeMapper.insertSelective(employee);
 	}
 
@@ -81,10 +82,11 @@ public class EmployeeService {
 
 	public void deleteBatch(List<Integer> ids) {
 		// TODO Auto-generated method stub
+		// 封装删除条件
 		EmployeeExample example = new EmployeeExample();
 		Criteria criteria = example.createCriteria();
-		//delete from xxx where emp_id in(1,2,3)
-		criteria.andEmpIdIn(ids);
+		criteria.andEmpIdIn(ids);//delete from xxx where emp_id in(1,2,3...)
+
 		employeeMapper.deleteByExample(example);
 	}
 

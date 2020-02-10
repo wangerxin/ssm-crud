@@ -6,6 +6,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EmployeeMapper {
+
+    /**
+     * 增删改操作一般返回操作记录数，查询操作一般返回实体或者实体集合
+     * @param example
+     * @return
+     */
     long countByExample(EmployeeExample example);
 
     int deleteByExample(EmployeeExample example);

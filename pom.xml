@@ -4,8 +4,11 @@
 	<groupId>com.atguigu</groupId>
 	<artifactId>ssm-crud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>mybatisannotation</module>
+    </modules>
     <!--注意：war包-->
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
 
 
 	<!--引入项目依赖的jar包 -->
