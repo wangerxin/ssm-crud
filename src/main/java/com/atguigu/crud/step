@@ -1,0 +1,15 @@
+1.创建maven项目
+2.引入依赖，war包
+3.引入前端框架bootstrap（忽略）
+4.配置web.xml
+5.配置springmvc
+6.配置spring
+7.mybatis逆向工程(MBGtEST)，生成javabean和mapper.xml
+8.测试Mapper（MapperTest）
+9.springmvc单元测试（MvcTest）
+10.controller分页查询
+11.controller返回jsp（了解）
+12.controller返回json
+13.jsp中编写ajxa请求（了解）
+14.前端校验
+15.后端JSR303校验
