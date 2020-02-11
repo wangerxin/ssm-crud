@@ -89,7 +89,11 @@ public interface IUserDao {
 
     /**
      * 查：一对多
-     *
+     * 编程步骤：1.数据主体是user，数据附属是order，因此在user中添加order属性（Order需要实现Serializable接口）
+     *           2.查询出user数据
+     *           3.根据user_id去order表中查询出order数据
+     *           4.将order数据封装到user数据中
+     * 问题：为什么分开两次查，而不是用表join（为了sql的简洁性）
      * @param id
      * @return
      */

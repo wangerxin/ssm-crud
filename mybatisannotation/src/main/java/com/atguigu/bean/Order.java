@@ -2,8 +2,10 @@ package com.atguigu.bean;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Order {
+public class Order implements Serializable {
 
     /**
      * 原始属性

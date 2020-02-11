@@ -44,32 +44,36 @@ public class OrderTest {
     @Test
     public void testInsert() {
         Order order = new Order();
-        order.setName("zhangsan_order2");
-        order.setUserId(1);
+        order.setName("鞋子");
+        order.setUserId(2);
+        order.setUserId(2);
         orderDao.insertOrder(order);
     }
 
     /**
      * 删
+     * 注意：如果这条记录不存在，也不会报错
      */
     @Test
     public void testDelete() {
-        orderDao.deleteOrderById(1);
+        orderDao.deleteOrderById(2);
     }
 
     /**
      * 改
+     * 注意：update的sql语句
      */
     @Test
     public void testUpdate() {
         Order order = new Order();
+        order.setId(1);
         order.setUserId(1);
         order.setName("鞋子");
         orderDao.updateOrder(order);
     }
 
     /**
-     * 查
+     * 查（单表）
      */
     @Test
     public void testSelectUser() {
@@ -78,7 +82,7 @@ public class OrderTest {
     }
 
     /**
-     * 查
+     * 查（单表）
      */
     @Test
     public void testSelectLike() {
@@ -89,8 +93,18 @@ public class OrderTest {
     }
 
     /**
-     * 一对多查，需要new新Bean
+     * 查（两表关联）
      */
+    @Test
+    public void testSelectOrderWithUser(){
+        Order order = orderDao.selectOrderWithUser(1);
+        System.out.println(order.getName());
+        System.out.println(order.getUser());
+    }
+
+    /**
+     * 一对多查，需要new新Bean
+
     @Test
     public void selectOrdersByUserId() {
 
@@ -99,4 +113,5 @@ public class OrderTest {
             System.out.println(order);
         }
     }
+    */
 }

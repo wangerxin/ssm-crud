@@ -1,3 +1,4 @@
+ssm基于配置文件的处理步骤
 1.创建maven项目
 2.引入依赖，war包
 3.引入前端框架bootstrap（忽略）
@@ -13,10 +14,10 @@
 13.jsp中编写ajxa请求（了解）
 14.前端校验
 15.后端JSR303校验
-16.部署到服务器
-1.install打成ssm-crud.war包，放在tomcat的webapps路径下
-2.启动tomcat，tomcat会自动部署war包，
-3.请求路径localhost:/8080/ssm-curd/xxx
+16.部署到服务器步骤
+（1）install打成ssm-crud.war包，放在tomcat的webapps路径下
+（2）启动tomcat，tomcat会自动部署war包，
+（3）请求路径localhost:/8080/ssm-curd/xxx
 
 一对一的情景：
 普通一对一：一个丈夫对应一个妻子

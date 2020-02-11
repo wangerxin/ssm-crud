@@ -1,0 +1,22 @@
+一、说明：
+1.本模块主要测试mybatis基于注解的使用.
+2.mybatis框架有mybatis-config.xml配置文件和Mapper.xml配置文件，基于注解是指mapper.xml基于注解
+3.本测试中有三张表：user，user_order,user_book. user与user_order是一对多关系，user与user_book是多对多的关系
+
+二、步骤：
+1.配置jdbc.properties和mybatis-config.xml
+2.编写javabean，根据javabean在mysql中建表
+  注意事项：建表的时候注意主键是否自增
+            表之间的一对一，一对多，多对多关系是否使用外键约束，张建说建表不使用外键，在代码中处理外键关系约束
+3.编写dao层接口CURD，详情见java.com.atguigu.dao
+4.单元测试，详情见java.com.atguigu.test
+
+三、mybatis处理一对一，一对多，多对多的表关系
+1.在mybatis的世界里，只有一对一和一对多
+2.一对一
+（1）普通一对一：比如一个男人对应一个老婆
+（2）逆向一对一：user与user_order是一对多的关系，但是order与user是一对一的关系
+3.一对多
+（1）user与user_order的关系
+（2）user与book的关系，book与user的关系
+3.多对多：mybatis框架中没有多对多，而是将多对多分解成一对多
