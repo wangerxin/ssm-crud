@@ -24,7 +24,7 @@ public interface IOrderDao {
     /**
      * 改（单表）
      */
-    @Update("update user_order set name = #{name} where id = #{id}")
+    @Update("update user_order set name = #{name},user_id = #{userId} where id = #{id}")
     Integer updateOrder(Order order);
 
     /**

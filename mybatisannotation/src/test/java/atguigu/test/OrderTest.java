@@ -67,8 +67,7 @@ public class OrderTest {
     public void testUpdate() {
         Order order = new Order();
         order.setId(1);
-        order.setUserId(1);
-        order.setName("鞋子");
+        order.setUserId(10000);
         orderDao.updateOrder(order);
     }
 
